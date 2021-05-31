@@ -20,3 +20,5 @@ Route::get('/', function () {//Esta ruta me redirecciona al login directamente
 Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {// Una vez ya este autenticado me manda al home
     return view('home');
 })->name('home');
+
+Route::resource('/productos','App\Http\Controllers\ProductosController')->names('productos');
