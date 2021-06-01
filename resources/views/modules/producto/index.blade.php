@@ -2,8 +2,11 @@
 
 @section('title', 'Productos')
 
-@section('content_header')
-    <h1 class="mb-3">Productos</h1>
+
+@section('content_header','Productos')
+
+
+@section('content')
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -40,36 +43,36 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach($productos as $producto)
-                                <tr>
-                                    <td>{{$producto->Id}}</td>
-                                    <td>{{$producto->Nombre}}</td>
-                                    <td>{{$producto->Tamano}}</td>
-                                    <td>{{$producto->ReferenciaTamano}}</td>
-                                    <td>{{$producto->Referencia}}</td>
-                                    <td>{{$producto->PrecioBase}}</td>
-                                    <td>{{$producto->PrecioUnidadTrabajador}}</td>
-                                    <td>{{$producto->PrecioUnidadVenta}}</td>
-                                    <td>{{$producto->PresentacionProdcuto}}</td>
-                                    <div>
-                                        <td>
-                                            <span>{{ $producto->Estado }}</span>
-                                            @if($producto->Estado == 'Activo')
-                                                <a class="btn btn-primary green" href="{{}}">Activar</a>
-                                            @else
-                                                <a class="btn btn-primary red" href="{{}}">Inactivar</a>
-                                            @endif
-                                        </td>
-                                    </div>
-                                    <div>
-                                        <td>
-                                            <a class="btn btn-info blue" href="{{ route('productos.show') }}">Ver</a>
-                                            <a class="btn btn-info green" href="{{ route('productos.edit') }}">Editar</a>
-                                            <button class="btn btn-danger">Borrar</button>
-                                        </td>
-                                    </div>
-                                </tr>
-                            @endforeach
+                        @foreach( $productos as $producto )
+                            <tr>
+                                <td>{{$producto->Id}}</td>
+                                <td>{{$producto->Nombre}}</td>
+                                <td>{{$producto->Tamano}}</td>
+                                <td>{{$producto->ReferenciaTamano}}</td>
+                                <td>{{$producto->Referencia}}</td>
+                                <td>{{$producto->PrecioBase}}</td>
+                                <td>{{$producto->PrecioUnidadTrabajador}}</td>
+                                <td>{{$producto->PrecioUnidadVenta}}</td>
+                                <td>{{$producto->PresentacionProdcuto}}</td>
+                                <div>
+                                    <td>
+                                        <span>{{ $producto->Estado }}</span>
+                                        @if( $producto->Estado == 'Activo')
+                                            <a class="btn btn-primary green" href="#">Activar</a>
+                                        @else
+                                            <a class="btn btn-primary red" href="#">Inactivar</a>
+                                        @endif
+                                    </td>
+                                </div>
+                                <div>
+                                    <td>
+                                        <a class="btn btn-info blue" href="{{ route('productos.show') }}">Ver</a>
+                                        <a class="btn btn-info green" href="{{ route('productos.edit') }}">Editar</a>
+                                        <button class="btn btn-danger">Borrar</button>
+                                    </td>
+                                </div>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

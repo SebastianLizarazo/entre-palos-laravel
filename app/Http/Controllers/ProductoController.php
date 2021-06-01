@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 
+
 class ProductoController extends Controller
 {
     /**
@@ -14,20 +15,23 @@ class ProductoController extends Controller
      */
     public function index()
     {
+        $productos = Producto::all();
+        return view('modules.producto.index')->with('productos',$productos);
+        /*
         return view('modules.producto.index', [
             'productos' => Producto::all(),
             'newProducto' => new Producto(),
-        ]);
+        ]);*/
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('modules.producto.create');
     }
 
     /**
