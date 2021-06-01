@@ -15,13 +15,10 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $productos = Producto::all();
-        return view('modules.producto.index')->with('productos',$productos);
-        /*
         return view('modules.producto.index', [
             'productos' => Producto::all(),
             'newProducto' => new Producto(),
-        ]);*/
+        ]);
     }
 
     /**

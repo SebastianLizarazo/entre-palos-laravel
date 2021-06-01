@@ -1,8 +1,8 @@
 @extends('adminlte::page')
 
-@section('title', 'Crear proyecto')
+@section('title', 'Crear producto')
 
-@section('content_header','Nuevo proyecto')
+@section('content_header','Nuevo producto')
 
 
 @section('content')

@@ -11,17 +11,19 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Todos los productos</h3>
+                    <h2 class="card-title">Todos los productos</h2>
                     <div class="card-tools">
-                        <div class="input-group input-group-sm" style="width: 150px;">
+                        <div class="input-group input-group-sm mt-1" style="width: 150px;">
                             <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
                             <div class="input-group-append">
                                 <button type="submit" class="btn btn-default">
                                     <i class="fas fa-search"></i>
                                 </button>
                             </div>
                         </div>
+                    </div>
+                    <div class="card-tools mr-3">
+                        <a class="btn btn-primary" href="{{ route('productos.create') }}">Nuevo producto</a>
                     </div>
                 </div>
                 <div class="card-body table-responsive p-0">
@@ -45,19 +47,19 @@
                         <tbody>
                         @foreach( $productos as $producto )
                             <tr>
-                                <td>{{$producto->Id}}</td>
-                                <td>{{$producto->Nombre}}</td>
-                                <td>{{$producto->Tamano}}</td>
-                                <td>{{$producto->ReferenciaTamano}}</td>
-                                <td>{{$producto->Referencia}}</td>
-                                <td>{{$producto->PrecioBase}}</td>
-                                <td>{{$producto->PrecioUnidadTrabajador}}</td>
-                                <td>{{$producto->PrecioUnidadVenta}}</td>
-                                <td>{{$producto->PresentacionProdcuto}}</td>
+                                <td>{{$producto->id}}</td>
+                                <td>{{$producto->nombre}}</td>
+                                <td>{{$producto->tamano}}</td>
+                                <td>{{$producto->referencia_tamano}}</td>
+                                <td>{{$producto->referencia}}</td>
+                                <td>{{$producto->precio_base}}</td>
+                                <td>{{$producto->precio_unidad_trabajador}}</td>
+                                <td>{{$producto->precio_unidad_venta}}</td>
+                                <td>{{$producto->presentacion_producto}}</td>
                                 <div>
                                     <td>
-                                        <span>{{ $producto->Estado }}</span>
-                                        @if( $producto->Estado == 'Activo')
+                                        <span>{{ $producto->estado }}</span>
+                                        @if( $producto->estado == 'Activo')
                                             <a class="btn btn-primary green" href="#">Activar</a>
                                         @else
                                             <a class="btn btn-primary red" href="#">Inactivar</a>

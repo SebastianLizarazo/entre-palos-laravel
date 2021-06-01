@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductoTable extends Migration
+class CreateProductosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,18 +15,18 @@ class CreateProductoTable extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->bigIncrements('id')->unique();
-            $table->string('Nombre');
-            $table->smallInteger('Tamano')->unsigned();
-            $table->enum('ReferenciaTamano',['ml','Lt','Kg','gr','Oz','Lb']);
-            $table->string('Referencia');
-            $table->integer('PrecioBase')->unsigned();
-            $table->integer('PrecioUnidadTrabajador')->unsigned();
-            $table->integer('PrecioUnidadVenta')->unsigned();
-            $table->enum('PresentacionProdcuto',[
+            $table->string('nombre');
+            $table->smallInteger('tamano')->unsigned();
+            $table->enum('referencia_tamano',['ml','Lt','Kg','gr','Oz','Lb']);
+            $table->string('referencia');
+            $table->integer('precio_base')->unsigned();
+            $table->integer('precio_unidad_trabajador')->unsigned();
+            $table->integer('precio_unidad_venta')->unsigned();
+            $table->enum('presentacion_producto',[
                 'Lata','Botella vidrio','Botella plastico','Tetrapack','Predeterminado',
                  'Icopor','Vaso vidio','Vaso plastico','Tasa']);
-            $table->smallInteger('CantidadProducto')->unsigned();
-            $table->enum('Estado',['Activo','Inactivo']);
+            $table->smallInteger('cantidad_producto')->unsigned();
+            $table->enum('estado',['Activo','Inactivo']);
             $table->timestamps();
         });
     }
