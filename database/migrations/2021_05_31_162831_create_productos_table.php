@@ -24,7 +24,7 @@ class CreateProductosTable extends Migration
             $table->integer('precio_unidad_venta')->unsigned();
             $table->enum('presentacion_producto',[
                 'Lata','Botella vidrio','Botella plastico','Tetrapack','Predeterminado',
-                 'Icopor','Vaso vidio','Vaso plastico','Tasa']);
+                 'Icopor','Vaso vidrio','Vaso plastico','Tasa']);
             $table->smallInteger('cantidad_producto')->unsigned();
             $table->enum('estado',['Activo','Inactivo']);
             $table->timestamps();
