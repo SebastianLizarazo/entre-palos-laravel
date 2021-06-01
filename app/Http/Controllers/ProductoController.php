@@ -28,7 +28,9 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        return view('modules.producto.create');
+        return view('modules.producto.create',[
+            'producto' => new Producto(),
+        ]);
     }
 
     /**
