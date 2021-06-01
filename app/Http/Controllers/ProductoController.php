@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Producto;
 use Illuminate\Http\Request;
 
-class ProductosController extends Controller
+class ProductoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,10 @@ class ProductosController extends Controller
      */
     public function index()
     {
-        return view('modules.producto.index');
+        return view('modules.producto.index', [
+            'productos' => Producto::all(),
+            'newProducto' => new Producto(),
+        ]);
     }
 
     /**
