@@ -9,7 +9,8 @@
             <h3 class="card-title">Nuevo producto</h3>
         </div>
         <form method="POST" action="{{ route('productos.store') }}">
-            @include('modules.producto._form')
+            <hr>
+            @include('modules.producto._form',['btnText' => 'Crear'])
         </form>
     </div>
 @stop
