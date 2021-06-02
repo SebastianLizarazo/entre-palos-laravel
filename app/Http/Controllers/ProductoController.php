@@ -109,11 +109,14 @@ class ProductoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Producto $producto
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Producto $producto)
     {
-        //
+        $producto->delete();
+        return view('modules.producto.index',[
+            'productos' => Producto::all(),
+        ]);
     }
 }

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Crear producto')
+@section('title', 'Editar producto')
 
 @section('content')
     <div class="card card-primary m-auto" style="width: 70%;">

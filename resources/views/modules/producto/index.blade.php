@@ -69,9 +69,13 @@
                                 </div>
                                 <div>
                                     <td>
-                                        <a class="btn btn-info blue" href="{{ route('productos.show',$producto) }}">Ver</a>
-                                        <a class="btn btn-info green" href="{{ route('productos.edit',$producto) }}">Editar</a>
-                                        <button class="btn btn-danger">Borrar</button>
+                                        <form method="POST" action="{{ route('productos.destroy',$producto) }}">
+                                            <a class="btn btn-info blue" href="{{ route('productos.show',$producto) }}">Ver</a>
+                                            <a class="btn btn-info green" href="{{ route('productos.edit',$producto) }}">Editar</a>
+                                                @csrf
+                                                @method('DELETE')
+                                              <button type="submit" class="btn btn-danger">Borrar</button>
+                                        </form>
                                     </td>
                                 </div>
                             </tr>

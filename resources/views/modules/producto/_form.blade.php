@@ -34,24 +34,18 @@
             required
         >
             <option value="">Seleccione</option>
-            <option value="ml"
-                {{ old('referencia_tamano')== 'ml'? 'selected' : ''}}
-            >ml</option>
-            <option value="Lt"
-                {{ old('referencia_tamano')== 'Lt'? 'selected' : ''}}
-            >Lt</option>
-            <option value="Kg"
-                {{ old('referencia_tamano')== 'Kg'? 'selected' : ''}}
-            >Kg</option>
-            <option value="gr"
-                {{ old('referencia_tamano')== 'gr'? 'selected' : ''}}
-            >gr</option>
-            <option value="Oz"
-                {{ old('referencia_tamano')== 'Oz'? 'selected' : ''}}
-            >Oz</option>
-            <option value="Lb"
-                {{ old('referencia_tamano')== 'Lb'? 'selected' : ''}}
-            >Lb</option>
+            <option @if ( view('modules.producto.edit')) value="ml" {{ old('referencia_tamano')== 'ml'? 'selected':''}}
+                    @else value="ml" @endif>ml</option>
+            <option @if ( view('modules.producto.edit')) value="Lt" {{ old('referencia_tamano')== 'Lt'? 'selected':''}}
+                    @else value="Lt" @endif>Lt</option>
+            <option @if ( view('modules.producto.edit')) value="Kg" {{ old('referencia_tamano')== 'Kg'? 'selected':''}}
+                    @else value="Kg" @endif>Kg</option>
+            <option @if ( view('modules.producto.edit')) value="gr" {{ old('referencia_tamano')== 'gr'? 'selected':''}}
+                    @else value="gr" @endif>gr</option>
+            <option @if ( view('modules.producto.edit')) value="Oz" {{ old('referencia_tamano')== 'Oz'? 'selected':''}}
+                    @else value="Oz" @endif>Oz</option>
+            <option @if ( view('modules.producto.edit')) value="Lb" {{ old('referencia_tamano')== 'Lb'? 'selected':''}}
+                    @else value="Lb" @endif>Lb</option>
         </select>
     </div>
     <div class="form-group">
