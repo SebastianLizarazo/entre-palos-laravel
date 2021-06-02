@@ -56,6 +56,7 @@
                                 <td>{{$producto->precio_unidad_trabajador}}</td>
                                 <td>{{$producto->precio_unidad_venta}}</td>
                                 <td>{{$producto->presentacion_producto}}</td>
+                                <td>{{$producto->cantidad_producto}}</td>
                                 <div>
                                     <td>
                                         <span>{{ $producto->estado }}</span>
@@ -68,8 +69,8 @@
                                 </div>
                                 <div>
                                     <td>
-                                        <a class="btn btn-info blue" href="{{ route('productos.show') }}">Ver</a>
-                                        <a class="btn btn-info green" href="{{ route('productos.edit') }}">Editar</a>
+                                        <a class="btn btn-info blue" href="{{ route('productos.show',$producto) }}">Ver</a>
+                                        <a class="btn btn-info green" href="{{ route('productos.edit',$producto) }}">Editar</a>
                                         <button class="btn btn-danger">Borrar</button>
                                     </td>
                                 </div>

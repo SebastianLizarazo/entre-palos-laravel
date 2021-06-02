@@ -159,6 +159,7 @@
             id="estado"
             required
         >
+            <option value="">Seleccione</option>
             <option value="Activo"{{ old('estado') == 'Activo'? 'selected': '' }}>Activo</option>
             <option value="Inactivo"{{ old('estado') == 'Inactivo'? 'selected': '' }}>Inactivo</option>
         </select>
