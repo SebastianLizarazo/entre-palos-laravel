@@ -62,11 +62,13 @@ class ProductoController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Producto $producto)
     {
-        //
+        return view('modules.producto.show',[
+            'producto' => $producto,
+        ]);
     }
 
     /**
