@@ -4,22 +4,103 @@
 
 
 @section('content')
-<div class="col-md-3">
-    <div class="card card-success shadow-sm">
-        <div class="card-header">
-            <h3 class="card-title">Shadow - Small</h3>
-
-            <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                </button>
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-10">
+                        <h1>Informacion del producto</h1>
+                    </div>
+                </div>
             </div>
-            <!-- /.card-tools -->
-        </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-            The body of the card
-        </div>
-        <!-- /.card-body -->
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 m-auto">
+                        <div class="card card-green m-auto">
+                            <div class="card-header">
+                                <h3 class="card-title"><i class="fas fa-utensils"></i> &nbsp;
+                                    {{$producto->nombre}}</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
+                                            class="fas fa-expand"></i></button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                            data-toggle="tooltip" title="Collapse">
+                                        <i class="fas fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-10">
+                                        <p>
+                                            <strong><i class="fas fa-signature"></i>&nbsp;Nombre</strong>
+                                            <p class="text-muted">{{ $producto->nombre }}</p>
+                                            <hr>
+                                            <strong><i class="fas fa-sort-numeric-up-alt"></i>&nbsp;Tamaño</strong>
+                                            <p class="text-muted">{{ $producto->tamano }}</p>
+                                            <hr>
+                                            <strong><i class="far fa-file-alt mr-1"></i>&nbsp;Referencia tamaño</strong>
+                                            <p class="text-muted">{{ $producto->referencia_tamano }}</p>
+                                            <hr>
+                                            <strong><i class="far fa-file-alt mr-1"></i>&nbsp;Referencia</strong>
+                                            <p class="text-muted">{{ $producto->referencia }}</p>
+                                            <hr>
+                                            <strong><i class="fas fa-dollar-sign"></i>&nbsp;Precio base</strong>
+                                            <p class="text-muted">{{ $producto->precio_base }}</p>
+                                            <hr>
+                                            <strong><i class="fas fa-dollar-sign"></i>&nbsp;Precio unidad trabajador</strong>
+                                            <p class="text-muted">{{ $producto->precio_unidad_trabajador }}</p>
+                                            <hr>
+                                            <strong><i class="fas fa-dollar-sign"></i>&nbsp;Precio unidad venta</strong>
+                                            <p class="text-muted">{{ $producto->precio_unidad_venta }}</p>
+                                            <hr>
+                                            <strong><i class="far fa-file-alt mr-1"></i>&nbsp;Presentación del producto</strong>
+                                            <p class="text-muted">{{ $producto->presentacion_producto }}</p>
+                                            <hr>
+                                            <strong><i class="fas fa-sort-amount-up-alt"></i>&nbsp;Cantidad producto</strong>
+                                            <p class="text-muted">{{ $producto->cantidad_producto }}</p>
+                                            <hr>
+                                            <strong><i class="far fa-file-alt mr-1"></i>&nbsp;Estado</strong>
+                                            <p class="text-muted">{{ $producto->estado }}</p>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row">
+                                    <div class="col-auto mr-auto">
+                                        <a role="button" href="{{ route('productos.index') }}" class="btn btn-success float-right"
+                                           style="margin-right: 5px;">
+                                            <i class="fas fa-tasks"></i> Regresar
+                                        </a>
+                                    </div>
+                                    <div class="col-auto">
+                                        <a role="button" href="{{ route('productos.edit',$producto) }}"
+                                           class="btn btn-primary float-right"
+                                           style="margin-right: 5px;">
+                                            <i class="fas fa-edit"></i> Editar
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        @if(empty($producto)){{--Si el producto esta vacio mostrara el mensaje de alerta --}}
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                    &times;
+                                </button>
+                                <h5><i class="icon fas fa-ban"></i> Error!</h5>
+                                No se encontro ningun registro con estos parametros de
+                                busqueda
+                            </div>
+                        @endif
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
     </div>
 @stop
