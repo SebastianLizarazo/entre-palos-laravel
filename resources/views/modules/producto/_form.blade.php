@@ -41,17 +41,20 @@
             name="referencia_tamano"
         >
             <option value="">Seleccione</option>
-            <option @if ( view('modules.producto.edit')) value="ml" {{ old('referencia_tamano')== 'ml'? 'selected':''}}
-                    @else value="ml" @endif>ml</option>
-            <option @if ( view('modules.producto.edit')) value="Lt" {{ old('referencia_tamano')== 'Lt'? 'selected':''}}
+            <option @if ( view('modules.producto.edit'))
+                        value="ml" {{ old('referencia_tamano', $producto->referencia_tamano)== 'ml'? 'selected':''}}
+                    @else
+                        value="ml"
+                    @endif>ml</option>
+            <option @if ( view('modules.producto.edit')) value="Lt" {{ old('referencia_tamano', $producto->referencia_tamano)== 'Lt'? 'selected':''}}
                     @else value="Lt" @endif>Lt</option>
-            <option @if ( view('modules.producto.edit')) value="Kg" {{ old('referencia_tamano')== 'Kg'? 'selected':''}}
+            <option @if ( view('modules.producto.edit')) value="Kg" {{ old('referencia_tamano', $producto->referencia_tamano)== 'Kg'? 'selected':''}}
                     @else value="Kg" @endif>Kg</option>
-            <option @if ( view('modules.producto.edit')) value="gr" {{ old('referencia_tamano')== 'gr'? 'selected':''}}
+            <option @if ( view('modules.producto.edit')) value="gr" {{ old('referencia_tamano', $producto->referencia_tamano)== 'gr'? 'selected':''}}
                     @else value="gr" @endif>gr</option>
-            <option @if ( view('modules.producto.edit')) value="Oz" {{ old('referencia_tamano')== 'Oz'? 'selected':''}}
+            <option @if ( view('modules.producto.edit')) value="Oz" {{ old('referencia_tamano', $producto->referencia_tamano)== 'Oz'? 'selected':''}}
                     @else value="Oz" @endif>Oz</option>
-            <option @if ( view('modules.producto.edit')) value="Lb" {{ old('referencia_tamano')== 'Lb'? 'selected':''}}
+            <option @if ( view('modules.producto.edit')) value="Lb" {{ old('referencia_tamano', $producto->referencia_tamano)== 'Lb'? 'selected':''}}
                     @else value="Lb" @endif>Lb</option>
         </select>
         @error('referencia_tamano'){{--Si hay un error en el input de nombre--}}
@@ -132,28 +135,28 @@
         >
             <option value="">Seleccione</option>
             <option value="Lata"
-                {{ old('presentacion_producto') == 'Lata'? 'selected':'' }}
+                {{ old('presentacion_producto', $producto->presentacion_producto) == 'Lata'? 'selected':'' }}
             >Lata</option>
             <option value="Botella vidrio"
-                {{ old('presentacion_producto') == 'Botella vidrio'? 'selected':'' }}
+                {{ old('presentacion_producto', $producto->presentacion_producto) == 'Botella vidrio'? 'selected':'' }}
             >Botella vidrio</option>
             <option value="Botella plastico"
-                {{ old('presentacion_producto') == 'Botella plastico'? 'selected':'' }}
+                {{ old('presentacion_producto', $producto->presentacion_producto) == 'Botella plastico'? 'selected':'' }}
             >Botella plastico</option>
             <option value="Tetrapack"
-                {{ old('presentacion_producto') == 'Tetrapack'? 'selected':'' }}
+                {{ old('presentacion_producto', $producto->presentacion_producto) == 'Tetrapack'? 'selected':'' }}
             >Tetrapack</option>
             <option value="Predeterminado"
-                {{ old('presentacion_producto') == 'Predeterminado'? 'selected':'' }}
+                {{ old('presentacion_producto', $producto->presentacion_producto) == 'Predeterminado'? 'selected':'' }}
             >Predeterminado</option>
             <option value="Icopor"
-                {{ old('presentacion_producto') == 'Icopor'? 'selected':'' }}
+                {{ old('presentacion_producto', $producto->presentacion_producto) == 'Icopor'? 'selected':'' }}
             >Icopor</option>
             <option value="Vaso vidrio"
-                {{ old('presentacion_producto') == 'Vaso vidrio'? 'selected':'' }}
+                {{ old('presentacion_producto', $producto->presentacion_producto) == 'Vaso vidrio'? 'selected':'' }}
             >Vaso vidrio</option>
             <option value="Vaso plastico"
-                {{ old('presentacion_producto') == 'Vaso plastico'? 'selected':'' }}
+                {{ old('presentacion_producto', $producto->presentacion_producto) == 'Vaso plastico'? 'selected':'' }}
             >Vaso plastico</option>
             <option value="Tasa"
                 {{ old('presentacion_producto') == 'Tasa'? 'selected':'' }}

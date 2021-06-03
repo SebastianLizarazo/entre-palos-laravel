@@ -4,7 +4,7 @@
 
 
 @section('content')
-    <div class="content-wrapper">
+    <div class="content-wrapper offset-2 col-md-10">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
