@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use App\Http\Requests\SaveProductoRequest;
 
 
 class ProductoController extends Controller
@@ -39,9 +40,11 @@ class ProductoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SaveProductoRequest $request)
     {
-        $producto = new Producto();
+
+        $producto = new Producto( $request->validated() );
+
         $producto->nombre = $request->get('nombre');
         $producto->tamano = $request->get('tamano');
         $producto->referencia_tamano = $request->get('referencia_tamano');
@@ -91,8 +94,9 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
-    public function update(Producto $producto,Request $request)
+    public function update(Producto $producto,SaveProductoRequest $request)
     {
+
         $producto->nombre = $request->get('nombre');
         $producto->tamano = $request->get('tamano');
         $producto->referencia_tamano = $request->get('referencia_tamano');
