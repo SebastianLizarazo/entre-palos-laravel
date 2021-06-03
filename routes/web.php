@@ -2,17 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-Route::patch('/productos/{producto}/estado/{estado}','App\Http\Controllers\ProductoController@setEstado')
+
+Route::patch('/productos/{producto}/setEstado/{estado}','App\Http\Controllers\ProductoController@setEstado')// Esta es la ruta creada para ir al metodo de cambiar estado del producto
     ->name('productos-setEstado');
 
 Route::get('/', function () {//Esta ruta me redirecciona al login directamente

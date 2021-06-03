@@ -122,10 +122,13 @@ class ProductoController extends Controller
         ]);
     }
 
-    public function setEstado(Producto $producto, $estado)
+    /**
+     * Actualiza el estado de un producto
+     */
+    public function setEstado(Producto $producto, $estado)// recibe el producto al que se le quiere hacer el cambio y el estado a establecer
     {
-            $producto->estado = $estado;
-            $producto->update();
+            $producto->estado = $estado;// le asignamos el estado que llego al estado del producto
+            $producto->update();//actualizamos
             return redirect(route('productos.index'));
     }
 }

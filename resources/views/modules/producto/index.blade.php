@@ -59,7 +59,11 @@
                                 <td>{{$producto->cantidad_producto}}</td>
                                 <div>
                                     <td>
-                                        <span>{{ $producto->estado }}</span>
+                                        <div class="text-center mb-2">
+                                            <span>
+                                                {{ $producto->estado }}
+                                            </span>
+                                        </div>
                                             @if( $producto->estado == 'Inactivo')
                                             <form method="POST"
                                                   action="{{ route('productos-setEstado', [ $producto, $estado = 'Activo'])}}">
@@ -75,17 +79,25 @@
                                                     <button class="btn btn-info">Inactivar</button>
                                                 </form>
                                             @endif
-
                                     </td>
                                 </div>
                                 <div>
                                     <td>
                                         <form method="POST" action="{{ route('productos.destroy',$producto) }}">
-                                            <a class="btn btn-info blue" href="{{ route('productos.show',$producto) }}">Ver</a>
-                                            <a class="btn btn-info green" href="{{ route('productos.edit',$producto) }}">Editar</a>
+                                            <a class="btn btn-success"
+                                               href="{{ route('productos.show',$producto) }}"
+                                               title="Ver"
+                                            ><i class="fas fa-eye"></i></a>
+                                            <a class="btn btn-info"
+                                               href="{{ route('productos.edit',$producto) }}"
+                                               title="Editar"
+                                            ><i class="fas fa-edit"></i></a>
                                                 @csrf
                                                 @method('DELETE')
-                                              <button type="submit" class="btn btn-danger" title="Borrar">Borrar</button>
+                                              <button type="submit"
+                                                      class="btn btn-danger"
+                                                      title="Borrar"
+                                              ><i class="far fa-trash-alt"></i></button>
                                         </form>
                                     </td>
                                 </div>
