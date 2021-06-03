@@ -42,19 +42,7 @@ class ProductoController extends Controller
      */
     public function store(SaveProductoRequest $request)
     {
-
-        $producto = new Producto( $request->validated() );
-
-        $producto->nombre = $request->get('nombre');
-        $producto->tamano = $request->get('tamano');
-        $producto->referencia_tamano = $request->get('referencia_tamano');
-        $producto->referencia = $request->get('referencia');
-        $producto->precio_base = $request->get('precio_base');
-        $producto->precio_unidad_trabajador = $request->get('precio_unidad_trabajador');
-        $producto->precio_unidad_venta = $request->get('precio_unidad_venta');
-        $producto->presentacion_producto = $request->get('presentacion_producto');
-        $producto->cantidad_producto = $request->get('cantidad_producto');
-        $producto->estado = $request->get('estado');
+        $producto = new Producto( $request->validated() );//el validated asigna los campos que estan especificados en el SaveProductoRequest
 
         $producto->save();
 
@@ -96,19 +84,7 @@ class ProductoController extends Controller
      */
     public function update(Producto $producto,SaveProductoRequest $request)
     {
-
-        $producto->nombre = $request->get('nombre');
-        $producto->tamano = $request->get('tamano');
-        $producto->referencia_tamano = $request->get('referencia_tamano');
-        $producto->referencia = $request->get('referencia');
-        $producto->precio_base = $request->get('precio_base');
-        $producto->precio_unidad_trabajador = $request->get('precio_unidad_trabajador');
-        $producto->precio_unidad_venta = $request->get('precio_unidad_venta');
-        $producto->presentacion_producto = $request->get('presentacion_producto');
-        $producto->cantidad_producto = $request->get('cantidad_producto');
-        $producto->estado = $request->get('estado');
-
-        $producto->update();
+        $producto->update( $request->validated());// update solo va a actualizar en la BD los campos que que esten validados en el SaveProductoRequest
         return redirect(route('productos.index'));
     }
 

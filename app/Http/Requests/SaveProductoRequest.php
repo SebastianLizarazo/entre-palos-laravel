@@ -24,7 +24,7 @@ class SaveProductoRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required',
+            'nombre' => ['required','unique:productos,nombre'],
             'tamano'=> 'required',
             'referencia_tamano' => 'required',
             'referencia' => 'required',
@@ -40,7 +40,9 @@ class SaveProductoRequest extends FormRequest
     public function messages()
     {
         return [
-           'nombre.required' => 'El producto necesita un nombre'
+           'nombre.required' => 'El producto necesita un nombre',
+            'precio_base.required' => 'El producto debe tener un precio base',
+            'nombre.unique' => 'Este producto ya existe',
         ];
     }
 }
