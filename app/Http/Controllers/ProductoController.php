@@ -121,4 +121,11 @@ class ProductoController extends Controller
             'productos' => Producto::all(),
         ]);
     }
+
+    public function setEstado(Producto $producto, $estado)
+    {
+            $producto->estado = $estado;
+            $producto->update();
+            return redirect(route('productos.index'));
+    }
 }

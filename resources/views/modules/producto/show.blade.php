@@ -15,7 +15,7 @@
                 </div>
             </div>
         </section>
-        <section class="content">
+        <section class="content align-items-center w-75">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12 m-auto">
@@ -73,7 +73,7 @@
                                     <div class="col-auto mr-auto">
                                         <a role="button" href="{{ route('productos.index') }}" class="btn btn-success float-right"
                                            style="margin-right: 5px;">
-                                            <i class="fas fa-tasks"></i> Regresar
+                                            <i class="fas fa-undo-alt"></i> Regresar
                                         </a>
                                     </div>
                                     <div class="col-auto">
@@ -93,6 +93,10 @@
                                 <h5><i class="icon fas fa-ban"></i> Error!</h5>
                                 No se encontro ningun registro con estos parametros de
                                 busqueda
+                                <a role="button" href="{{ route('productos.index') }}" class="btn btn-link float-left"
+                                   style="margin-right: 5px;">
+                                    <i class="fas fa-undo-alt"></i> Regresar
+                                </a>
                             </div>
                         @endif
                         </div>

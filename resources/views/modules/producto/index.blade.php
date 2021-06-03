@@ -60,11 +60,22 @@
                                 <div>
                                     <td>
                                         <span>{{ $producto->estado }}</span>
-                                        @if( $producto->estado == 'Activo')
-                                            <a class="btn btn-primary green" href="#">Activar</a>
-                                        @else
-                                            <a class="btn btn-primary red" href="#">Inactivar</a>
-                                        @endif
+                                            @if( $producto->estado == 'Inactivo')
+                                            <form method="POST"
+                                                  action="{{ route('productos-setEstado', [ $producto, $estado = 'Activo'])}}">
+                                                  @csrf
+                                                  @method('PATCH')
+                                                  <button class="btn btn-info">Activar</button>
+                                            </form>
+                                            @else
+                                                <form method="POST"
+                                                      action="{{ route('productos-setEstado', [ $producto, $estado = 'Inactivo']) }}">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button class="btn btn-info">Inactivar</button>
+                                                </form>
+                                            @endif
+
                                     </td>
                                 </div>
                                 <div>
@@ -74,7 +85,7 @@
                                             <a class="btn btn-info green" href="{{ route('productos.edit',$producto) }}">Editar</a>
                                                 @csrf
                                                 @method('DELETE')
-                                              <button type="submit" class="btn btn-danger">Borrar</button>
+                                              <button type="submit" class="btn btn-danger" title="Borrar">Borrar</button>
                                         </form>
                                     </td>
                                 </div>

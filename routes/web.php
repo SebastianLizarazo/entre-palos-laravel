@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::patch('/productos/{producto}/estado/{estado}','App\Http\Controllers\ProductoController@setEstado')
+    ->name('productos-setEstado');
 
 Route::get('/', function () {//Esta ruta me redirecciona al login directamente
     return view('auth.login');
