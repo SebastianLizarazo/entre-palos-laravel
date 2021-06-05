@@ -5,8 +5,8 @@
 
 @section('content_header','Productos')
 
-
 @section('content')
+    @include('partials.session_status'){{--Incluimos el partial que nos muestra los mensajes de session del usuario--}}
     <div class="row">
         <div class="col-12">
             <div class="card">

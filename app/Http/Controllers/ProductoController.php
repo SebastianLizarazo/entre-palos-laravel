@@ -38,7 +38,7 @@ class ProductoController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(SaveProductoRequest $request)
     {
@@ -46,7 +46,7 @@ class ProductoController extends Controller
 
         $producto->save();
 
-        return redirect(route('productos.index'));
+        return redirect()->route('productos.index')->with('status','El producto '.$producto->nombre.' fue creado con exito');
     }
 
     /**
@@ -85,21 +85,20 @@ class ProductoController extends Controller
     public function update(Producto $producto,SaveProductoRequest $request)
     {
         $producto->update( $request->validated());// update solo va a actualizar en la BD los campos que que esten validados en el SaveProductoRequest
-        return redirect(route('productos.index'));
+        return redirect()->route('productos.index')->with('status','El producto '.$producto->nombre.' fue actualizado con exito');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  Producto $producto
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Producto $producto)
     {
         $producto->delete();
-        return view('modules.producto.index',[
-            'productos' => Producto::all(),
-        ]);
+        return redirect()->route('productos.index')->with('status','El producto '.$producto->nombre.' fue borrado con exito');//redireccionamos al index con el mensaje de session
+                                                                                                             //de tipo status que el producto se borro exitosamente
     }
 
     /**
@@ -109,6 +108,7 @@ class ProductoController extends Controller
     {
             $producto->estado = $estado;// le asignamos el estado que llego al estado del producto
             $producto->update();//actualizamos
-            return redirect(route('productos.index'));
+            return redirect()->route('productos.index')->with('status','El producto '.$producto->nombre.' ahora esta '.$estado);//redireccionamos al index con el mensaje de session
+            //de tipo status que el producto se el cambio el estado, ademas muestra el nombre y el estado actual de producto
     }
 }

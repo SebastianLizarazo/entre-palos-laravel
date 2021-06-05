@@ -14,7 +14,7 @@ class CreateProductosTable extends Migration
     public function up()
     {
         Schema::create('productos', function (Blueprint $table) {
-            $table->bigIncrements('id')->unique();
+            $table->id('id');
             $table->string('nombre');
             $table->smallInteger('tamano')->unsigned();
             $table->enum('referencia_tamano',['ml','Lt','Kg','gr','Oz','Lb']);
