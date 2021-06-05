@@ -5,12 +5,13 @@
         <div class="input-group">
             <div class="custom-file">
                 <input type="file" class="custom-file-input" id="imagen_producto" name="imagen_producto">
-                <label class="custom-file-label" for="exampleInputFile">Suba una imagen</label>
+                <label class="custom-file-label" for="imagen_producto">Suba una imagen</label>
             </div>
             <div class="input-group-append">
                 <span class="input-group-text">Upload</span>
             </div>
         </div>
+        @include('partials.validation_errors',['name' => 'imagen_producto'])
     </div>
     <div class="form-group">
         <label for="nombre">Nombre</label>

@@ -25,7 +25,7 @@ class SaveProductoRequest extends FormRequest
     public function rules()
     {
         return [
-            'imagen_producto' => 'mimes:jpeg,png,jpg',
+            'imagen_producto' => 'mimes:jpeg,png,jpg',//mimes es el tipo de formato permitido
             'nombre' => [
                 'required',
                 Rule::unique('productos')->ignore($this->route('producto'))// Hace que al momento de crear un poducto no lo deje crear con un nombre existente pero
@@ -53,7 +53,7 @@ class SaveProductoRequest extends FormRequest
             'precio_base.required' => 'El producto debe tener un precio base',
             'nombre.unique' => 'Este producto ya existe',
             'referencia.unique' => 'Esta referencia ya existe',
-            'imagen_producto.mimes' => 'La imagen debe ser una imagen'
+            'imagen_producto.mimes' => 'La archivo debe ser de tipo jpeg, png o jpg'
         ];
     }
 }

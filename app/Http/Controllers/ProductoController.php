@@ -86,6 +86,7 @@ class ProductoController extends Controller
      */
     public function update(Producto $producto,SaveProductoRequest $request)
     {
+
         $producto->update( $request->validated());// update solo va a actualizar en la BD los campos que que esten validados en el SaveProductoRequest
         return redirect()->route('productos.index')->with('status','El producto '.$producto->nombre.' fue actualizado con exito');
     }
