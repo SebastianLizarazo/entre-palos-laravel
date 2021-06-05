@@ -51,7 +51,7 @@ class SaveProductoRequest extends FormRequest
            'nombre.required' => 'El producto necesita un nombre',
             'precio_base.required' => 'El producto debe tener un precio base',
             'nombre.unique' => 'Este producto ya existe',
-            'precio_base.max' => 'El precio base debe tener menos de 7 digitos'
+            'referencia.unique' => 'Esta referencia ya existe'
         ];
     }
 }
