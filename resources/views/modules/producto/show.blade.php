@@ -35,8 +35,19 @@
                                 <div class="row">
                                     <div class="col-sm-10">
                                         <p>
-                                            <strong><i class="fas fa-signature"></i>&nbsp;Nombre</strong>
-                                            <p class="text-muted">{{ $producto->nombre }}</p>
+                                            @if( $producto->imagen_producto )
+                                                <div class="col-5 text-center">
+                                                    <img src="/storage/{{ $producto->imagen_producto }}" alt="{{ $producto->nombre }}" class="img-circle img-fluid">
+                                                    <div class="text-center">
+                                                        <strong><i class="fas fa-signature"></i>&nbsp;Nombre</strong>
+                                                        <p class="text-muted">{{ $producto->nombre }}</p>
+                                                    </div>
+                                                </div>
+                                            @else
+                                            <hr>
+                                                <strong><i class="fas fa-signature"></i>&nbsp;Nombre</strong>
+                                                <p class="text-muted">{{ $producto->nombre }}</p>
+                                            @endif
                                             <hr>
                                             <strong><i class="fas fa-sort-numeric-up-alt"></i>&nbsp;Tamaño</strong>
                                             <p class="text-muted">{{ $producto->tamano }}</p>

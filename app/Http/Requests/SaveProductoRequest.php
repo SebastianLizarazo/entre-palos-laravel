@@ -25,6 +25,7 @@ class SaveProductoRequest extends FormRequest
     public function rules()
     {
         return [
+            'imagen_producto' => 'mimes:jpeg,png,jpg',
             'nombre' => [
                 'required',
                 Rule::unique('productos')->ignore($this->route('producto'))// Hace que al momento de crear un poducto no lo deje crear con un nombre existente pero
@@ -51,7 +52,8 @@ class SaveProductoRequest extends FormRequest
            'nombre.required' => 'El producto necesita un nombre',
             'precio_base.required' => 'El producto debe tener un precio base',
             'nombre.unique' => 'Este producto ya existe',
-            'referencia.unique' => 'Esta referencia ya existe'
+            'referencia.unique' => 'Esta referencia ya existe',
+            'imagen_producto.mimes' => 'La imagen debe ser una imagen'
         ];
     }
 }

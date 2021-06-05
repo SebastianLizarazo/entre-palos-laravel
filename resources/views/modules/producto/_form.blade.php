@@ -1,7 +1,7 @@
 @csrf
 <div class="card-body">
     <div class="form-group">
-        <label for="imagen_producto">Imagen del producto</label>
+        <label for="imagen_producto">Imagen del producto (opcional)</label>
         <div class="input-group">
             <div class="custom-file">
                 <input type="file" class="custom-file-input" id="imagen_producto" name="imagen_producto">
