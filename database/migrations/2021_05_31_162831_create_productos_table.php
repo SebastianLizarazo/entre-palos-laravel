@@ -15,10 +15,10 @@ class CreateProductosTable extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->id('id');
-            $table->string('nombre');
+            $table->string('nombre')->unique();
             $table->smallInteger('tamano')->unsigned();
             $table->enum('referencia_tamano',['ml','Lt','Kg','gr','Oz','Lb']);
-            $table->string('referencia');
+            $table->string('referencia')->unique();
             $table->integer('precio_base')->unsigned();
             $table->integer('precio_unidad_trabajador')->unsigned();
             $table->integer('precio_unidad_venta')->unsigned();

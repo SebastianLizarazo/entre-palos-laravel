@@ -38,11 +38,13 @@ class ProductoController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return SaveProductoRequest|array|false|\Illuminate\Http\RedirectResponse|Request|\Illuminate\Http\UploadedFile|\Illuminate\Http\UploadedFile[]|string
      */
     public function store(SaveProductoRequest $request)
     {
         $producto = new Producto( $request->validated() );//el validated asigna los campos que estan especificados en el SaveProductoRequest
+
+        $producto->imagen_producto = $request->file('imagen_producto')->store('images');//guardamos la imagen del formulario dentro de la carpeta storage/images
 
         $producto->save();
 

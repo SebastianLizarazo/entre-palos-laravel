@@ -1,6 +1,18 @@
 @csrf
 <div class="card-body">
     <div class="form-group">
+        <label for="imagen_producto">Imagen del producto</label>
+        <div class="input-group">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="imagen_producto" name="imagen_producto">
+                <label class="custom-file-label" for="exampleInputFile">Suba una imagen</label>
+            </div>
+            <div class="input-group-append">
+                <span class="input-group-text">Upload</span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
         <label for="nombre">Nombre</label>
             <input
                 type="text"
