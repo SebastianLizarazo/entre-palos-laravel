@@ -9,6 +9,7 @@
                 name="nombre"
                 placeholder="Digite el nombre"
                 value="{{ old('nombre', $producto->nombre) }}"
+                required
             >
         @error('nombre'){{--Si hay un error en el input de nombre--}}
             <br>
@@ -26,6 +27,7 @@
             name="tamano"
             placeholder="Digite el tamaño"
             value="{{ old('tamano', $producto->tamano) }}"
+            required
         >
         @error('tamano'){{--Si hay un error en el input de nombre--}}
         <br>
@@ -39,6 +41,7 @@
             class="form-control"
             id="referencia_tamano"
             name="referencia_tamano"
+            required
         >
             <option value="">Seleccione</option>
             <option value="ml"
@@ -75,6 +78,7 @@
             name="referencia"
             placeholder="Digite la ref"
             value="{{ old('referencia', $producto->referencia) }}"
+            required
         >
         @error('referencia'){{--Si hay un error en el input de nombre--}}
         <br>
@@ -91,6 +95,7 @@
             name="precio_base"
             placeholder="Digite el precio"
             value="{{ old('precio_base', $producto->precio_base) }}"
+            required
         >
         @error('precio_base'){{--Si hay un error en el input de nombre--}}
         <br>
@@ -107,6 +112,7 @@
             name="precio_unidad_trabajador"
             placeholder="Digite el precio"
             value="{{ old('precio_unidad_trabajador', $producto->precio_unidad_trabajador) }}"
+            required
         >
         @error('precio_unidad_trabajador'){{--Si hay un error en el input de nombre--}}
         <br>
@@ -122,6 +128,7 @@
                name="precio_unidad_venta"
                placeholder="Digite el precio"
                value="{{ old('precio_unidad_venta', $producto->precio_unidad_venta) }}"
+               required
         >
         @error('precio_unidad_venta'){{--Si hay un error en el input de nombre--}}
         <br>
@@ -135,6 +142,7 @@
             class="form-control"
             name="presentacion_producto"
             id="presentacion_producto"
+            required
         >
             <option value="">Seleccione</option>
             <option value="Lata"
@@ -180,6 +188,7 @@
             name="cantidad_producto"
             placeholder="Digite la cantidad"
             value="{{ old('cantidad_producto', $producto->cantidad_producto) }}"
+            required
         >
         @error('cantidad_producto'){{--Si hay un error en el input de nombre--}}
         <br>
@@ -193,6 +202,7 @@
             class="form-control"
             name="estado"
             id="estado"
+            required
         >
             <option value="">Seleccione</option>
             <option value="Activo"

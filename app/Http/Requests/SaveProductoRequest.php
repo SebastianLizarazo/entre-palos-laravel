@@ -30,14 +30,17 @@ class SaveProductoRequest extends FormRequest
                 Rule::unique('productos')->ignore($this->route('producto'))// Hace que al momento de crear un poducto no lo deje crear con un nombre existente pero
                                                                                         // cuando este en la vista edit y no se cambie el nombre no aparesca el error de que este producto ya existe
             ],
-            'tamano'=> 'required',
+            'tamano'=> 'required',//mejorar para que no se pueda digitar un numero de mas de 5 digitos
             'referencia_tamano' => 'required',
-            'referencia' => 'required',
-            'precio_base' => 'required|max:99999999',
-            'precio_unidad_trabajador' => 'required',
-            'precio_unidad_venta' => 'required',
+            'referencia' => [
+                'required',
+                Rule::unique('productos')->ignore($this->route('producto'))
+            ],
+            'precio_base' => 'required',//mejorar para que el usuario no pueda digitar un precio de mas de 7 digitos
+            'precio_unidad_trabajador' => 'required',//mejorar para que el usuario no pueda digitar un precio de mas de 7 digitos
+            'precio_unidad_venta' => 'required',//mejorar para que el usuario no pueda digitar un precio de mas de 7 digitos
             'presentacion_producto' => 'required',
-            'cantidad_producto' => 'required',
+            'cantidad_producto' => 'required',//mejorar para que no se pueda digitar un numero de mas de 5 digitos
             'estado' => 'required',
         ];
     }
@@ -48,7 +51,7 @@ class SaveProductoRequest extends FormRequest
            'nombre.required' => 'El producto necesita un nombre',
             'precio_base.required' => 'El producto debe tener un precio base',
             'nombre.unique' => 'Este producto ya existe',
-            'precio_base' => 'El precio base debe tener menos de 7 digitos'
+            'precio_base.max' => 'El precio base debe tener menos de 7 digitos'
         ];
     }
 }
