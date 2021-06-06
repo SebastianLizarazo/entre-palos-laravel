@@ -8,7 +8,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
-class OptimizeProductImage
+class OptimizeProductImage implements ShouldQueue // Implementando el ShouldQueue enviamos el listener a las queues
 {
     /**
      * Create the event listener.
