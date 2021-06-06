@@ -25,7 +25,7 @@ class SaveProductoRequest extends FormRequest
     public function rules()
     {
         return [
-            'imagen_producto' => 'mimes:jpeg,png,jpg',//mimes es el tipo de formato permitido
+            'imagen_producto' => 'mimes:jpeg,png,jpg|nullable',//mimes es el tipo de formato permitido
             'nombre' => [
                 'required',
                 Rule::unique('productos')->ignore($this->route('producto'))// Hace que al momento de crear un poducto no lo deje crear con un nombre existente pero

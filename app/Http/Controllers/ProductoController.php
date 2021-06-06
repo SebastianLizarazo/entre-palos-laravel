@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use App\Http\Requests\SaveProductoRequest;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 
 class ProductoController extends Controller
@@ -48,7 +50,15 @@ class ProductoController extends Controller
 
         $producto->save();
 
-        return redirect()->route('productos.index')->with('status','El producto '.$producto->nombre.' fue creado con exito');
+        $imagen = Image::make(Storage::get($producto->imagen_producto))//Traemos del storage la imagen del proyecto y la metemos en el metodo make de Image
+                ->widen(600)//Redimencionamos el ancho de la imagen pero dejamos el alto libre
+                ->limitColors(255)//Limitamos sus colores para que pece aun menos
+                ->encode();//y volvemos a codificar la imagen a su estado original
+
+        Storage::put($producto->imagen_producto, (string)$imagen);//Aca remplazamos la imagen original(primer parametro)por la nueva imagen redimensionada(segundo parametro) pero la establecemos como un string
+
+
+        return redirect()->route('productos.show',$producto)->with('status','El producto '.$producto->nombre.' fue creado con exito');
     }
 
     /**
@@ -86,9 +96,28 @@ class ProductoController extends Controller
      */
     public function update(Producto $producto,SaveProductoRequest $request)
     {
+        if ( $request->hasFile('imagen_producto'))//Pregunta si llego una imagen
+        {
+            Storage::delete($producto->imagen_producto);//Borramos la imagen antigua
 
-        $producto->update( $request->validated());// update solo va a actualizar en la BD los campos que que esten validados en el SaveProductoRequest
-        return redirect()->route('productos.index')->with('status','El producto '.$producto->nombre.' fue actualizado con exito');
+            $producto->fill($request->validated());//Primer asignamos los demas datos al proyecto
+
+            $producto->imagen_producto = $request->file('imagen_producto')->store('images');//Despues asignamos la nueva imagen
+
+            $producto->save();
+
+            $imagen = Image::make(Storage::get($producto->imagen_producto))//Traemos del storage la imagen del proyecto y la metemos en el metodo make de Image
+                    ->widen(600)//Redimencionamos el ancho de la imagen pero dejamos el alto libre
+                    ->limitColors(255)//Limitamos sus colores para que pece aun menos
+                    ->encode();//y volvemos a codificar la imagen a su estado original
+
+            Storage::put($producto->imagen_producto, (string)$imagen);//Aca remplazamos la imagen original(primer parametro)por la nueva imagen redimensionada(segundo parametro) pero la establecemos como un string
+
+        }
+        else{//Si el formulario no manda ninguna imagen
+            $producto->update($request->validated());// update solo va a actualizar en la BD los campos que que esten validados en el SaveProductoRequest
+        }
+        return redirect()->route('productos.show',$producto)->with('status','El producto '.$producto->nombre.' fue actualizado con exito');
     }
 
     /**
@@ -99,7 +128,10 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $producto)
     {
+        Storage::delete($producto->imagen_producto);
+
         $producto->delete();
+
         return redirect()->route('productos.index')->with('status','El producto '.$producto->nombre.' fue borrado con exito');//redireccionamos al index con el mensaje de session
                                                                                                              //de tipo status que el producto se borro exitosamente
     }

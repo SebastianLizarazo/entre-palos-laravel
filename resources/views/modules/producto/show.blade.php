@@ -10,6 +10,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-10">
+                        @include('partials.session_status')
                         <h1>Informacion del producto</h1>
                     </div>
                 </div>
@@ -37,7 +38,12 @@
                                         <p>
                                             @if( $producto->imagen_producto )
                                                 <div class="col-5 text-center">
-                                                    <img src="/storage/{{ $producto->imagen_producto }}" alt="{{ $producto->nombre }}" class="img-circle img-fluid">
+                                                    <img
+                                                         src="/storage/{{ $producto->imagen_producto }}"
+                                                         alt="{{ $producto->nombre }}"
+                                                         class="img-circle img-fluid"
+                                                         style="height: 150px; object-fit: cover"{{--Establecemos un tamaño para la imagen en la vista--}}
+                                                    >
                                                     <div class="text-center">
                                                         <strong><i class="fas fa-signature"></i>&nbsp;Nombre</strong>
                                                         <p class="text-muted">{{ $producto->nombre }}</p>
@@ -84,15 +90,23 @@
                                     <div class="col-auto mr-auto">
                                         <a role="button" href="{{ route('productos.index') }}" class="btn btn-success float-right"
                                            style="margin-right: 5px;">
-                                            <i class="fas fa-undo-alt"></i> Regresar
+                                            <i class="fas fa-undo-alt"></i> Regresar al inicio
                                         </a>
                                     </div>
                                     <div class="col-auto">
+                                        <form method="POST" action="{{ route('productos.destroy',$producto) }}">
                                         <a role="button" href="{{ route('productos.edit',$producto) }}"
                                            class="btn btn-primary float-right"
                                            style="margin-right: 5px;">
                                             <i class="fas fa-edit"></i> Editar
                                         </a>
+                                        @csrf
+                                        @method('DELETE')
+                                            <button type="submit"
+                                                    class="btn btn-danger"
+                                            ><i class="far fa-trash-alt"></i>Borrar
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
