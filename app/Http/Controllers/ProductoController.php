@@ -46,11 +46,16 @@ class ProductoController extends Controller
     {
         $producto = new Producto( $request->validated() );//el validated asigna los campos que estan especificados en el SaveProductoRequest
 
-        $producto->imagen_producto = $request->file('imagen_producto')->store('images');//guardamos la imagen del formulario dentro de la carpeta storage/images
+        if ( $request->hasFile('imagen_producto')){
 
-        $producto->save();
+            $producto->imagen_producto = $request->file('imagen_producto')->store('images');//guardamos la imagen del formulario dentro de la carpeta storage/images
 
-        ProductoSaved::dispatch($producto);//dispatch dispara el evento
+            $producto->save();
+
+            ProductoSaved::dispatch($producto);//dispatch dispara el evento que optimizara la imagen
+        }else {
+            $producto->save();
+        }
 
         return redirect()->route('productos.show',$producto)->with('status','El producto '.$producto->nombre.' fue creado con exito');
     }
@@ -94,13 +99,13 @@ class ProductoController extends Controller
         {
             Storage::delete($producto->imagen_producto);//Borramos la imagen antigua
 
-            $producto->fill($request->validated());//Primer asignamos los demas datos al proyecto
+            $producto->fill($request->validated());//Primer asignamos los demas datos al proyecto si guardarlos en la bd aun
 
             $producto->imagen_producto = $request->file('imagen_producto')->store('images');//Despues asignamos la nueva imagen
 
             $producto->save();
 
-            ProductoSaved::dispatch($producto);//dispatch dispara el evento
+            ProductoSaved::dispatch($producto);//dispatch dispara el evento que optimizara la imagen
 
         }
         else{//Si el formulario no manda ninguna imagen
@@ -117,9 +122,9 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $producto)
     {
-        Storage::delete($producto->imagen_producto);
+        Storage::delete($producto->imagen_producto);//Elimina la imagen del producto de la bd y del storage
 
-        $producto->delete();
+        $producto->delete();// Elimina el producto
 
         return redirect()->route('productos.index')->with('status','El producto '.$producto->nombre.' fue borrado con exito');//redireccionamos al index con el mensaje de session
                                                                                                              //de tipo status que el producto se borro exitosamente
