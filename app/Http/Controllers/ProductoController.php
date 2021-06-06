@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ProductoSaved;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use App\Http\Requests\SaveProductoRequest;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 
 
 class ProductoController extends Controller
@@ -50,13 +50,7 @@ class ProductoController extends Controller
 
         $producto->save();
 
-        $imagen = Image::make(Storage::get($producto->imagen_producto))//Traemos del storage la imagen del proyecto y la metemos en el metodo make de Image
-                ->widen(600)//Redimencionamos el ancho de la imagen pero dejamos el alto libre
-                ->limitColors(255)//Limitamos sus colores para que pece aun menos
-                ->encode();//y volvemos a codificar la imagen a su estado original
-
-        Storage::put($producto->imagen_producto, (string)$imagen);//Aca remplazamos la imagen original(primer parametro)por la nueva imagen redimensionada(segundo parametro) pero la establecemos como un string
-
+        ProductoSaved::dispatch($producto);//dispatch dispara el evento
 
         return redirect()->route('productos.show',$producto)->with('status','El producto '.$producto->nombre.' fue creado con exito');
     }
@@ -106,12 +100,7 @@ class ProductoController extends Controller
 
             $producto->save();
 
-            $imagen = Image::make(Storage::get($producto->imagen_producto))//Traemos del storage la imagen del proyecto y la metemos en el metodo make de Image
-                    ->widen(600)//Redimencionamos el ancho de la imagen pero dejamos el alto libre
-                    ->limitColors(255)//Limitamos sus colores para que pece aun menos
-                    ->encode();//y volvemos a codificar la imagen a su estado original
-
-            Storage::put($producto->imagen_producto, (string)$imagen);//Aca remplazamos la imagen original(primer parametro)por la nueva imagen redimensionada(segundo parametro) pero la establecemos como un string
+            ProductoSaved::dispatch($producto);//dispatch dispara el evento
 
         }
         else{//Si el formulario no manda ninguna imagen
