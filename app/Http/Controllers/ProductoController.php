@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\ProductoSaved;
+use App\Models\Categoria;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use App\Http\Requests\SaveProductoRequest;
@@ -33,6 +34,7 @@ class ProductoController extends Controller
     {
         return view('modules.producto.create',[
             'producto' => new Producto,
+            'categorias' => Categoria::pluck('nombre','id'),//Pluck nos trae las columnas especificas que le pidamos de un objeto
         ]);
     }
 
@@ -83,6 +85,7 @@ class ProductoController extends Controller
     {
         return view('modules.producto.edit',[
             'producto' => $producto,
+            'categorias' => Categoria::pluck('nombre','id'),
         ]);
     }
 

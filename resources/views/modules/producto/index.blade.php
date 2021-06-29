@@ -11,7 +11,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Todos los productos</h2>
+                    <h2 class="card-title">Mostrar productos</h2>
                     <div class="card-tools">
                         <div class="input-group input-group-sm mt-1" style="width: 150px;">
                             <input type="text" name="table_search" class="form-control float-right" placeholder="Search">

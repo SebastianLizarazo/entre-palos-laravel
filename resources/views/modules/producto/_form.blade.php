@@ -166,6 +166,19 @@
         @include('partials.validation_errors',['name' => 'cantidad_producto'])
     </div>
     <div class="form-group">
+        <label for="categoria_id">Categoria</label>
+        <select
+            name="categoria_id"
+            id="categoria_id"
+            class="form-control"
+        >
+            <option value="">Seleccione</option>
+            @foreach($categorias as $categoria)
+                <option value="">{{ $categoria }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="form-group">
         <label for="estado">Estado</label>
         <select
             class="form-control"
