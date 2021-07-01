@@ -42,6 +42,10 @@ class SaveProductoRequest extends FormRequest
             'precio_unidad_venta' => 'required',//mejorar para que el usuario no pueda digitar un precio de mas de 7 digitos
             'presentacion_producto' => 'required',
             'cantidad_producto' => 'required',//mejorar para que no se pueda digitar un numero de mas de 5 digitos
+            'categoria_id' => [
+                'required',
+                'exists:categorias,id'//Verifica si el la categoria_id que seleccionamos existe en la tabla categoria como id
+            ],
             'estado' => 'required',
         ];
     }
@@ -53,7 +57,9 @@ class SaveProductoRequest extends FormRequest
             'precio_base.required' => 'El producto debe tener un precio base',
             'nombre.unique' => 'Este producto ya existe',
             'referencia.unique' => 'Esta referencia ya existe',
-            'imagen_producto.mimes' => 'La archivo debe ser de tipo jpeg, png o jpg'
+            'categoria_id.required' => 'El producto debe contener una categoria',
+            'categoria_id.exists' => 'La categoria seleccionada no existe',
+            'imagen_producto.mimes' => 'La archivo debe ser de tipo jpeg, png o jpg',
         ];
     }
 }

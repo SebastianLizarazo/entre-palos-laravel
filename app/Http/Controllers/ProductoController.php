@@ -22,6 +22,7 @@ class ProductoController extends Controller
         return view('modules.producto.index', [
             'productos' => Producto::all(),
             'newProducto' => new Producto(),
+            'categoria' => Categoria::pluck('nombre'),
         ]);
     }
 

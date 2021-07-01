@@ -39,6 +39,7 @@
                             <th>Precio unidad trabajador</th>
                             <th>Precio unidad venta</th>
                             <th>Presentación producto</th>
+                            <th>Categoria</th>
                             <th>Cantidad</th>
                             <th>Estado</th>
                             <th>Acciones</th>
@@ -56,6 +57,7 @@
                                 <td>{{$producto->precio_unidad_trabajador}}</td>
                                 <td>{{$producto->precio_unidad_venta}}</td>
                                 <td>{{$producto->presentacion_producto}}</td>
+                                <td>{{$producto->categoria->nombre}}</td>
                                 <td>{{$producto->cantidad_producto}}</td>
                                 <div>
                                     <td>

@@ -173,10 +173,13 @@
             class="form-control"
         >
             <option value="">Seleccione</option>
-            @foreach($categorias as $categoria)
-                <option value="">{{ $categoria }}</option>
+            @foreach($categorias as $id => $name)
+                <option value="{{ $id }}"
+                        {{ $id === $producto->categoria_id? 'selected' : '' }}
+                >{{ $name }}</option>
             @endforeach
         </select>
+        @include('partials.validation_errors',['name' => 'categoria_id'])
     </div>
     <div class="form-group">
         <label for="estado">Estado</label>
