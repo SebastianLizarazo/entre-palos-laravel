@@ -20,7 +20,8 @@ class ProductoController extends Controller
     public function index()
     {
         return view('modules.producto.index', [
-            'productos' => Producto::all(),
+            //Utilizamos el with en la variable producto para no hacer consultas N+1 con categorias
+            'productos' => Producto::with('categoria')->oldest()->paginate(),//el metodo oldest obtiene los registros mas antiguos de la tabla
             'newProducto' => new Producto(),
             'categoria' => Categoria::pluck('nombre'),
         ]);

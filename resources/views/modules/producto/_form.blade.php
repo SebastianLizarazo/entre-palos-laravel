@@ -175,7 +175,7 @@
             <option value="">Seleccione</option>
             @foreach($categorias as $id => $name)
                 <option value="{{ $id }}"
-                        {{ $id === $producto->categoria_id? 'selected' : '' }}
+                        {{ $id == old('categoria_id' ,$producto->categoria_id) ? 'selected' : '' }}
                 >{{ $name }}</option>
             @endforeach
         </select>

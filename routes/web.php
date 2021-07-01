@@ -1,6 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+
+//**Registros de consultas sql
+//DB::listen(function ($query){
+//    var_dump($query->sql);
+//});
 
 
 Route::patch('/productos/{producto}/setEstado/{estado}','App\Http\Controllers\ProductoController@setEstado')// Esta es la ruta creada para ir al metodo de cambiar estado del producto

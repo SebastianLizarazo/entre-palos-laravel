@@ -57,7 +57,13 @@
                                 <td>{{$producto->precio_unidad_trabajador}}</td>
                                 <td>{{$producto->precio_unidad_venta}}</td>
                                 <td>{{$producto->presentacion_producto}}</td>
-                                <td>{{$producto->categoria->nombre}}</td>
+                                <td>
+                                    @if(!empty($producto->categoria))
+                                        <a href="#" class="badge badge-secondary">{{$producto->categoria->nombre}}</a>
+                                    @else
+                                        <span>No hay categoria</span>
+                                    @endif
+                                </td>
                                 <td>{{$producto->cantidad_producto}}</td>
                                 <div>
                                     <td>
