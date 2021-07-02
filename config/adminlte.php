@@ -251,6 +251,10 @@ return [
             'url'  => '/productos',
         ],
         [
+            'text' => 'Categorias',
+            'url'  => '/categorias',
+        ],
+        [
             'text'        => 'pages',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',

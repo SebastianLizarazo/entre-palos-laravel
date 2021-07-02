@@ -36,7 +36,7 @@ class ProductoController extends Controller
     {
         return view('modules.producto.create',[
             'producto' => new Producto,
-            'categorias' => Categoria::pluck('nombre','id'),//Pluck nos trae las columnas especificas que le pidamos de un objeto
+            'categorias' => Categoria::pluck('nombre','id'),//Pluck nos trae las columnas especificas que le pidamos de un objeto, el primer parametro es el valor y el segundo es la llave
         ]);
     }
 
