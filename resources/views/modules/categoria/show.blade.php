@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title','Producto | '.$producto->nombre)
+@section('title','Producto | '.$categoria->nombre)
 
 
 @section('content')
@@ -10,8 +10,8 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-10">
-                        @include('partials.session_status')
-                        <h1>Informacion del producto</h1>
+                        @include('partials.session_status'){{--Muestra el mensaje de estatus, ej: la categoria creada con exito--}}
+                        <h1>Informacion de la categoria</h1>
                     </div>
                 </div>
             </div>
@@ -23,7 +23,7 @@
                         <div class="card card-green m-auto">
                             <div class="card-header">
                                 <h3 class="card-title"><i class="fas fa-utensils"></i> &nbsp;
-                                    {{$producto->nombre}}</h3>
+                                    {{$categoria->nombre}}</h3>
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
                                             class="fas fa-expand"></i></button>
@@ -36,51 +36,15 @@
                                 <div class="row">
                                     <div class="col-sm-10">
                                         <p>
-                                            @if( $producto->imagen_producto )
-                                                <div class="col-5 text-center">
-                                                    <img
-                                                         src="/storage/{{ $producto->imagen_producto }}"
-                                                         alt="{{ $producto->nombre }}"
-                                                         class="img-circle img-fluid"
-                                                         style="height: 150px; object-fit: cover"{{--Establecemos un tamaño para la imagen en la vista--}}
-                                                    >
-                                                    <div class="text-center">
-                                                        <strong><i class="fas fa-signature"></i>&nbsp;Nombre</strong>
-                                                        <p class="text-muted">{{ $producto->nombre }}</p>
-                                                    </div>
-                                                </div>
-                                            @else
                                             <hr>
                                                 <strong><i class="fas fa-signature"></i>&nbsp;Nombre</strong>
-                                                <p class="text-muted">{{ $producto->nombre }}</p>
-                                            @endif
+                                                <p class="text-muted">{{ $categoria->nombre }}</p>
                                             <hr>
-                                            <strong><i class="fas fa-sort-numeric-up-alt"></i>&nbsp;Tamaño</strong>
-                                            <p class="text-muted">{{ $producto->tamano }}</p>
+                                                <strong><i class="fas fa-sort-numeric-up-alt"></i>&nbsp;Tipo</strong>
+                                                <p class="text-muted">{{ $categoria->tipo }}</p>
                                             <hr>
-                                            <strong><i class="far fa-file-alt mr-1"></i>&nbsp;Referencia tamaño</strong>
-                                            <p class="text-muted">{{ $producto->referencia_tamano }}</p>
-                                            <hr>
-                                            <strong><i class="far fa-file-alt mr-1"></i>&nbsp;Referencia</strong>
-                                            <p class="text-muted">{{ $producto->referencia }}</p>
-                                            <hr>
-                                            <strong><i class="fas fa-dollar-sign"></i>&nbsp;Precio base</strong>
-                                            <p class="text-muted">{{ $producto->precio_base }}</p>
-                                            <hr>
-                                            <strong><i class="fas fa-dollar-sign"></i>&nbsp;Precio unidad trabajador</strong>
-                                            <p class="text-muted">{{ $producto->precio_unidad_trabajador }}</p>
-                                            <hr>
-                                            <strong><i class="fas fa-dollar-sign"></i>&nbsp;Precio unidad venta</strong>
-                                            <p class="text-muted">{{ $producto->precio_unidad_venta }}</p>
-                                            <hr>
-                                            <strong><i class="far fa-file-alt mr-1"></i>&nbsp;Presentación del producto</strong>
-                                            <p class="text-muted">{{ $producto->presentacion_producto }}</p>
-                                            <hr>
-                                            <strong><i class="fas fa-sort-amount-up-alt"></i>&nbsp;Cantidad producto</strong>
-                                            <p class="text-muted">{{ $producto->cantidad_producto }}</p>
-                                            <hr>
-                                            <strong><i class="far fa-file-alt mr-1"></i>&nbsp;Estado</strong>
-                                            <p class="text-muted">{{ $producto->estado }}</p>
+                                                <strong><i class="far fa-file-alt mr-1"></i>Estado</strong>
+                                                <p class="text-muted">{{ $categoria->estado}}</p>
                                         </p>
                                     </div>
                                 </div>
@@ -88,14 +52,14 @@
                             <div class="card-footer">
                                 <div class="row">
                                     <div class="col-auto mr-auto">
-                                        <a role="button" href="{{ route('productos.index') }}" class="btn btn-success float-right"
+                                        <a role="button" href="{{ route('categorias.index') }}" class="btn btn-success float-right"
                                            style="margin-right: 5px;">
                                             <i class="fas fa-undo-alt"></i> Regresar al inicio
                                         </a>
                                     </div>
                                     <div class="col-auto">
-                                        <form method="POST" action="{{ route('productos.destroy',$producto) }}">
-                                        <a role="button" href="{{ route('productos.edit',$producto) }}"
+                                        <form method="POST" action="{{ route('categorias.destroy',$categoria) }}">
+                                        <a role="button" href="{{ route('categorias.edit',$categoria) }}"
                                            class="btn btn-primary float-right"
                                            style="margin-right: 5px;">
                                             <i class="fas fa-edit"></i> Editar
@@ -110,7 +74,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @if(empty($producto)){{--Si el producto esta vacio mostrara el mensaje de alerta --}}
+                        @if(empty($categoria)){{--Si el producto esta vacio mostrara el mensaje de alerta --}}
                             <div class="alert alert-danger alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
                                     &times;
