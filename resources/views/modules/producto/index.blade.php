@@ -59,7 +59,10 @@
                                 <td>{{$producto->presentacion_producto}}</td>
                                 <td>
                                     @if(!empty($producto->categoria))
-                                        <a href="#" class="badge badge-secondary">{{$producto->categoria->nombre}}</a>
+                                        <a href="{{ route('categorias.show',$producto->categoria) }}"
+                                           class="badge badge-secondary">
+                                            {{$producto->categoria->nombre}}
+                                        </a>
                                     @else
                                         <span>No hay categoria</span>
                                     @endif

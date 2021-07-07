@@ -23,6 +23,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {// Una ve
     return view('home');
 })->name('home');
 
+
+
 Route::resource('/productos', 'App\Http\Controllers\ProductoController')->names('productos');
 
 Route::resource('/categorias', 'App\Http\Controllers\CategoriaController')->names('categorias');

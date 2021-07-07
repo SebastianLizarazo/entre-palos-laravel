@@ -28,7 +28,7 @@
                 {{ old('tipo', $categoria->tipo) == 'Bebida' ? 'selected' : '' }}
             >Bebida</option>
             <option value="Postre"
-                {{ old('tipo', $categoria->tipo) == 'Bebida' ? 'selected' : '' }}
+                {{ old('tipo', $categoria->tipo) == 'Postre' ? 'selected' : '' }}
             >Postre</option>
         </select>
         @include('partials.validation_errors',['name' => 'tipo'])
