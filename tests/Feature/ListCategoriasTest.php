@@ -20,17 +20,8 @@ class ListCategoriasTest extends TestCase
     {
         //$this->withoutExceptionHandling();
 
-        $categoria = Categoria::create([
-            'nombre' => 'Categoria 69',
-            'tipo' => 'Comida',
-            'estado' => 'Inactivo'
-        ]);
-
-        $categoria2= Categoria::create([
-            'nombre' => 'Categoria 32',
-            'tipo' => 'Comida',
-            'estado' => 'Activo'
-        ]);
+        $categoria = Categoria::factory()->create();
+        $categoria2= Categoria::factory()->create();
 
         $response = $this->get(route('categorias.index'));
 
@@ -47,17 +38,8 @@ class ListCategoriasTest extends TestCase
 
     public function test_can_see_individual_categoria()
     {
-        $categoria = Categoria::create([
-            'nombre' => 'Categoria 69',
-            'tipo' => 'Comida',
-            'estado' => 'Inactivo'
-        ]);
-
-        $categoria2= Categoria::create([
-            'nombre' => 'Categoria 32',
-            'tipo' => 'Comida',
-            'estado' => 'Activo'
-        ]);
+        $categoria = Categoria::factory()->create();
+        $categoria2= Categoria::factory()->create();
 
         $response = $this->get(route('categorias.show', $categoria));
 

@@ -26,9 +26,8 @@ class ListProductosTest extends TestCase
 
         $this->withoutExceptionHandling();
 
-        $producto = Producto::factory()->make();
-        $producto2 = Producto::factory()->make();
-
+        $producto = Producto::factory()->create();
+        $producto2 = Producto::factory()->create();
 
         $response = $this->get(route('productos.index'));
 
@@ -45,39 +44,10 @@ class ListProductosTest extends TestCase
 
     public function test_can_see_individual_producto()
     {
-        $categoria = Categoria::create([//Primero creo una categoria para que no haya probrema con la asignacion de la llave foranea en el producto
-            'nombre' => 'Categoria 69',
-            'tipo' => 'Comida',
-            'estado' => 'Inactivo'
-        ]);
+        //$this->withoutExceptionHandling();
 
-        $producto = Producto::create([
-            'nombre' => 'Canre asada',
-            'tamano' => 200,
-            'referencia_tamano' => 'ml',
-            'referencia' => 021,
-            'precio_base' => 2200,
-            'precio_unidad_trabajador' => 4000,
-            'precio_unidad_venta' => 5000,
-            'presentacion_producto' => 'Tetrapack',
-            'cantidad_producto' => 5,
-            'categoria_id' => $categoria->id,//asigno el id de la categoria que cree anteriormente
-            'estado' => 'Activo'
-        ]);
-        $producto2 = Producto::create([
-            'imagen_producto' => 'sjdhaksdhalsdhksdasd',
-            'nombre' => 'Agua molida',
-            'tamano' => 300,
-            'referencia_tamano' => 'ml',
-            'referencia' => 032,
-            'precio_base' => 2200,
-            'precio_unidad_trabajador' => 4000,
-            'precio_unidad_venta' => 5000,
-            'presentacion_producto' => 'Tetrapack',
-            'cantidad_producto' => 5,
-            'categoria_id' => $categoria->id,//asigno el id de la categoria que cree anteriormente
-            'estado' => 'Activo'
-        ]);
+        $producto = Producto::factory()->create();
+        $producto2 = Producto::factory()->create();
 
         $response = $this->get( route('productos.show',$producto));
 
