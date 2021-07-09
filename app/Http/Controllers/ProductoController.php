@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductoController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');//Aca solo va a permitir el acceso al crud del producto si y solo si el user esta autentificado
+    }
+
     /**
      * Display a listing of the resource.
      *
