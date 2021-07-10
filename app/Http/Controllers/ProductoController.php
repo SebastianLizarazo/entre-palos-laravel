@@ -28,7 +28,7 @@ class ProductoController extends Controller
         return view('modules.producto.index', [
             //Utilizamos el with en la variable producto para no hacer consultas N+1 con categorias
             'productos' => Producto::with('categoria')->oldest()->paginate(),//el metodo oldest obtiene los registros mas antiguos de la tabla
-            'newProducto' => new Producto(),
+            'newProducto' => new Producto(),//Esta es la variable para validar la politica de creacion de producto
             'categoria' => Categoria::pluck('nombre'),
         ]);
     }
@@ -40,6 +40,8 @@ class ProductoController extends Controller
      */
     public function create()
     {
+        $this->authorize('create-producto');//aca validamos/invocamos la autorizacion del gate create-producto
+
         return view('modules.producto.create',[
             'producto' => new Producto,
             'categorias' => Categoria::pluck('nombre','id'),//Pluck nos trae las columnas especificas que le pidamos de un objeto, el primer parametro es el valor y el segundo es la llave
@@ -54,6 +56,8 @@ class ProductoController extends Controller
      */
     public function store(SaveProductoRequest $request)
     {
+        $this->authorize('create-producto');//Primero autorizamos y despues validamos los datos
+
         $producto = new Producto( $request->validated() );//el validated asigna los campos que estan especificados en el SaveProductoRequest
 
         if ( $request->hasFile('imagen_producto')){

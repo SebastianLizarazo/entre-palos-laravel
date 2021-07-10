@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -14,7 +15,9 @@ class SaveProductoRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        //allows significa permite y definimos el gate al que hace referencia
+        return  true;
+        //return Gate::authorize('create', new \App\Models\Producto);
     }
 
     /**

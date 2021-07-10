@@ -21,10 +21,12 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot()//En este metodo se crean los gates deseados
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('create-producto', function ($user){//definimos este gate para verificar si el usuario que esta autenticado puede crear un producto
+           return $user->rol === 'Administrador';
+        });
     }
 }

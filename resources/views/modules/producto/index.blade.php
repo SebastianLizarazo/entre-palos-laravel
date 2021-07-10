@@ -23,7 +23,9 @@
                         </div>
                     </div>
                     <div class="card-tools mr-3">
-                        <a class="btn btn-primary" href="{{ route('productos.create') }}">Nuevo producto</a>
+                        @can('create-producto'){{--Verifica si cumple la politica--}}
+                            <a class="btn btn-primary" href="{{ route('productos.create') }}">Nuevo producto</a>
+                        @endcan
                     </div>
                 </div>
                 <div class="card-body table-responsive p-0">
