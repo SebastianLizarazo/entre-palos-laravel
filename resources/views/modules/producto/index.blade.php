@@ -23,7 +23,8 @@
                         </div>
                     </div>
                     <div class="card-tools mr-3">
-                        @can('create-producto'){{--Verifica si cumple la politica--}}
+                        {{--El primer parametro es el metodo de la politica a evaluar, y el segundo parametro es una instancia del modelo al que pertenece la politica--}}
+                        @can('create', $newProducto){{--Verifica si cumple la politica--}}
                             <a class="btn btn-primary" href="{{ route('productos.create') }}">Nuevo producto</a>
                         @endcan
                     </div>
@@ -77,21 +78,23 @@
                                                 {{ $producto->estado }}
                                             </span>
                                         </div>
-                                            @if( $producto->estado == 'Inactivo')
-                                            <form method="POST"
-                                                  action="{{ route('productos-setEstado', [ $producto, $estado = 'Activo'])}}">
-                                                  @csrf
-                                                  @method('PATCH')
-                                                  <button class="btn btn-info">Activar</button>
-                                            </form>
-                                            @else
+                                            @can('update',$newProducto)
+                                                @if( $producto->estado == 'Inactivo')
                                                 <form method="POST"
-                                                      action="{{ route('productos-setEstado', [ $producto, $estado = 'Inactivo']) }}">
-                                                    @csrf
-                                                    @method('PATCH')
-                                                    <button class="btn btn-info">Inactivar</button>
+                                                      action="{{ route('productos-setEstado', [ $producto, $estado = 'Activo'])}}">
+                                                      @csrf
+                                                      @method('PATCH')
+                                                      <button class="btn btn-info">Activar</button>
                                                 </form>
-                                            @endif
+                                                @else
+                                                    <form method="POST"
+                                                          action="{{ route('productos-setEstado', [ $producto, $estado = 'Inactivo']) }}">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <button class="btn btn-info">Inactivar</button>
+                                                    </form>
+                                                @endif
+                                            @endcan
                                     </td>
                                 </div>
                                 <div>
@@ -101,16 +104,20 @@
                                                href="{{ route('productos.show',$producto) }}"
                                                title="Ver"
                                             ><i class="fas fa-eye"></i></a>
-                                            <a class="btn btn-info"
-                                               href="{{ route('productos.edit',$producto) }}"
-                                               title="Editar"
-                                            ><i class="fas fa-edit"></i></a>
+                                            @can('update',$newProducto)
+                                                <a class="btn btn-info"
+                                                   href="{{ route('productos.edit',$producto) }}"
+                                                   title="Editar"
+                                                ><i class="fas fa-edit"></i></a>
+                                            @endcan
+                                            @can('delete',$newProducto)
                                                 @csrf
                                                 @method('DELETE')
                                               <button type="submit"
                                                       class="btn btn-danger"
                                                       title="Borrar"
                                               ><i class="far fa-trash-alt"></i></button>
+                                            @endcan
                                         </form>
                                     </td>
                                 </div>

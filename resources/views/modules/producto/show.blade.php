@@ -95,17 +95,21 @@
                                     </div>
                                     <div class="col-auto">
                                         <form method="POST" action="{{ route('productos.destroy',$producto) }}">
-                                        <a role="button" href="{{ route('productos.edit',$producto) }}"
-                                           class="btn btn-primary float-right"
-                                           style="margin-right: 5px;">
-                                            <i class="fas fa-edit"></i> Editar
-                                        </a>
-                                        @csrf
-                                        @method('DELETE')
-                                            <button type="submit"
-                                                    class="btn btn-danger"
-                                            ><i class="far fa-trash-alt"></i>Borrar
-                                            </button>
+                                        @can('update',$producto)
+                                            <a role="button" href="{{ route('productos.edit',$producto) }}"
+                                               class="btn btn-primary float-right"
+                                               style="margin-right: 5px;">
+                                                <i class="fas fa-edit"></i> Editar
+                                            </a>
+                                        @endcan
+                                        @can('delete',$producto)
+                                            @csrf
+                                            @method('DELETE')
+                                                <button type="submit"
+                                                        class="btn btn-danger"
+                                                ><i class="far fa-trash-alt"></i>Borrar
+                                                </button>
+                                        @endcan
                                         </form>
                                     </div>
                                 </div>

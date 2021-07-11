@@ -23,6 +23,7 @@ class CategoriaController extends Controller
     {
         return view('modules.categoria.index',[
             'categorias' => Categoria::with('productos')->oldest()->paginate(),
+            'newCategoria' => new Categoria, //Esta es la variable para validar la creacion de la categoria
         ]);
     }
 
@@ -33,8 +34,10 @@ class CategoriaController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', $categoria = new Categoria);
+
         return view('modules.categoria.create',[
-           'categoria' => new Categoria,
+           'categoria' => $categoria,
         ]);
     }
 
@@ -47,6 +50,8 @@ class CategoriaController extends Controller
     public function store(SaveCategoriaRequest $request)
     {
         $categoria = new Categoria( $request->validated());
+
+        $this->authorize('create', $categoria);
 
         $categoria->save();
 
@@ -74,6 +79,8 @@ class CategoriaController extends Controller
      */
     public function edit(Categoria $categoria)
     {
+        $this->authorize('update', $categoria);
+
         return view('modules.categoria.edit',[
             'categoria' => $categoria,
         ]);
@@ -90,6 +97,8 @@ class CategoriaController extends Controller
     {
             $categoria->update( $request->validated());
 
+            $this->authorize('update', $categoria);
+
             return redirect()->route('categorias.index')->with('status','La categoria '.$categoria->nombre.' fue actualizada con exito');
     }
 
@@ -101,6 +110,8 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
+        $this->authorize('delete', $categoria);
+
         $categoria->delete();
 
         return redirect()->route('categorias.index')->with('status','La categoria '.$categoria->nombre.' fue eliminada con exito');
@@ -108,6 +119,8 @@ class CategoriaController extends Controller
 
     public function setEstado(Categoria $categoria, $estado)
     {
+        $this->authorize('update', $categoria);
+
         $categoria->estado = $estado;
         $categoria->update();
         return redirect()->route('categorias.index')->with('status','La categoria '.$categoria->nombre.' ahora esta '.$estado);

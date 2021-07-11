@@ -28,7 +28,7 @@ class ProductoController extends Controller
         return view('modules.producto.index', [
             //Utilizamos el with en la variable producto para no hacer consultas N+1 con categorias
             'productos' => Producto::with('categoria')->oldest()->paginate(),//el metodo oldest obtiene los registros mas antiguos de la tabla
-            'newProducto' => new Producto(),//Esta es la variable para validar la politica de creacion de producto
+            'newProducto' => new Producto,//Esta es la variable para validar la politica de creacion de producto
             'categoria' => Categoria::pluck('nombre'),
         ]);
     }
@@ -40,10 +40,10 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        $this->authorize('create-producto');//aca validamos/invocamos la autorizacion del gate create-producto
+        $this->authorize('create',$producto = new Producto);//aca validamos/invocamos la autorizacion del metodo create de la politica que hace referencia la instanciacion del modelo producto
 
         return view('modules.producto.create',[
-            'producto' => new Producto,
+            'producto' => $producto,
             'categorias' => Categoria::pluck('nombre','id'),//Pluck nos trae las columnas especificas que le pidamos de un objeto, el primer parametro es el valor y el segundo es la llave
         ]);
     }
@@ -56,9 +56,9 @@ class ProductoController extends Controller
      */
     public function store(SaveProductoRequest $request)
     {
-        $this->authorize('create-producto');//Primero autorizamos y despues validamos los datos
-
         $producto = new Producto( $request->validated() );//el validated asigna los campos que estan especificados en el SaveProductoRequest
+
+        $this->authorize('create',$producto);//Primero validamos los datos y despues autorizamos con la politica
 
         if ( $request->hasFile('imagen_producto')){
 
@@ -95,6 +95,8 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
+        $this->authorize('update',$producto);////aca validamos/invocamos la autorizacion del metodo update de la politica que hace referencia a la instanciacion del modelo producto
+
         return view('modules.producto.edit',[
             'producto' => $producto,
             'categorias' => Categoria::pluck('nombre','id'),
@@ -110,6 +112,8 @@ class ProductoController extends Controller
      */
     public function update(Producto $producto,SaveProductoRequest $request)
     {
+        $this->authorize('update',$producto);//Revisa si estamos autorizados para actualizar el producto
+
         if ( $request->hasFile('imagen_producto'))//Pregunta si llego una imagen
         {
             Storage::delete($producto->imagen_producto);//Borramos la imagen antigua
@@ -137,6 +141,8 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $producto)
     {
+        $this->authorize('delete',$producto);
+
         Storage::delete($producto->imagen_producto);//Elimina la imagen del producto de la bd y del storage
 
         $producto->delete();// Elimina el producto
@@ -150,6 +156,8 @@ class ProductoController extends Controller
      */
     public function setEstado(Producto $producto, $estado)// recibe el producto al que se le quiere hacer el cambio y el estado a establecer
     {
+        $this->authorize('update',$producto);
+
             $producto->estado = $estado;// le asignamos el estado que llego al estado del producto
             $producto->update();//actualizamos
             return redirect()->route('productos.index')->with('status','El producto '.$producto->nombre.' ahora esta '.$estado);//redireccionamos al index con el mensaje de session
